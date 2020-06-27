@@ -7,16 +7,16 @@
   int echoPin = 6;
   UltraSonicDistanceSensor distanceSensor(triggerPin, echoPin);
 
-  int minDist = 10;
+  int minDist = 5;
   int reactDist = 100;
   int prevIntensity = 0;
   
-  int intensityMin = 45;
+  int intensityMin = 35;
   int intensityMax = 70;
   
   int cycleTime = 100;
 
-  int onsetDelay = 30;
+  int onsetDelay = 50;
 
   float startSequenceDelay = 500;
   int startSequenceRepetitions = 4;
@@ -30,14 +30,19 @@ void setup()
 void loop() 
 {
   int intensity = calcIntensity();
-  if (prevIntensity = 0 && intensity != 0)   
+  if (prevIntensity == 0 && intensity != 0)   
   {
-    setMotors(intensityMax);
-    delay(onsetDelay);
+    kickStartMotors();
   }
   setMotors(intensity);
   delay(cycleTime);
   prevIntensity = intensity;
+}
+
+void kickStartMotors()
+{
+  setMotors(intensityMax);
+  delay(onsetDelay);
 }
 
 int calcIntensity()

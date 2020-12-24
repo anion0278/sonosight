@@ -7,7 +7,7 @@
   int echoPin = 6;
   UltraSonicDistanceSensor distanceSensor(triggerPin, echoPin);
 
-  int minDist = 5;
+  int minDist = 8;
   int reactDist = 100;
   int prevIntensity = 0;
   
